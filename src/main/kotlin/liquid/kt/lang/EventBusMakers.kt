@@ -23,7 +23,7 @@ internal object OldEventBusMaker : EventBusMaker {
         setTrackPhasesMethod.invoke(builder, false)
         markerTypeMethod.invoke(builder, IModBusEvent::class.java)
 
-        return buildMethod.invoke(builder) as IEventBus
+        return buildMethod.invoke(builder)
     }
 }
 

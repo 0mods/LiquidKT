@@ -16,7 +16,7 @@ import kotlin.String
 /**
  * Reuse a bit of code from FMLJavaModLanguageProvider
  */
-public class KotlinLanguageProvider : IModLanguageProvider {
+class KotlinLanguageProvider : IModLanguageProvider {
     override fun name(): String = "liquidkt"
 
     override fun getFileVisitor(): Consumer<ModFileScanData> {

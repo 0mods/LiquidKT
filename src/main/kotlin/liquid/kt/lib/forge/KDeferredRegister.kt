@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
 /**
  * @property registryObject For getting the ID or any other properties of the RegistryObject
  */
-class ObjectHolderDelegate<V>(public val registryObject: RegistryObject<V>) : ReadOnlyProperty<Any?, V>, Supplier<V>, () -> V {
+class ObjectHolderDelegate<V>(val registryObject: RegistryObject<V>) : ReadOnlyProperty<Any?, V>, Supplier<V>, () -> V {
     override fun getValue(thisRef: Any?, property: KProperty<*>): V = registryObject.get()
     override fun invoke(): V = registryObject.get()
     override fun get(): V = registryObject.get()

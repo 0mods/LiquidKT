@@ -33,15 +33,19 @@ object AutoKotlinEventBusSubscriber {
      * [thedarkcolour.kotlinforforge.forge.FORGE_BUS]
      * or [thedarkcolour.kotlinforforge.forge.MOD_BUS].
      */
-    public fun inject(mod: KotlinModContainer, scanData: ModFileScanData, classLoader: ClassLoader) {
-        LOGGER.debug(Logging.LOADING, "Attempting to inject @EventBusSubscriber kotlin objects in to the event bus for ${mod.modId}")
+    fun inject(mod: KotlinModContainer, scanData: ModFileScanData, classLoader: ClassLoader) {
+        LOGGER.debug(
+            Logging.LOADING,
+            "Attempting to inject @EventBusSubscriber kotlin objects in to the event bus for ${mod.modId}"
+        )
 
         val data = scanData.annotations.filter { annotationData ->
             EVENT_BUS_SUBSCRIBER == annotationData.annotationType
         }
 
         for (annotationData in data) {
-            val sidesValue = annotationData.annotationData.getOrDefault("value", DIST_ENUM_HOLDERS) as List<ModAnnotation.EnumHolder>
+            val sidesValue =
+                annotationData.annotationData.getOrDefault("value", DIST_ENUM_HOLDERS) as List<ModAnnotation.EnumHolder>
             val sides = EnumSet.noneOf(Dist::class.java).plus(sidesValue.map { eh -> Dist.valueOf(eh.value) })
             val modid = annotationData.annotationData.getOrDefault("modid", mod.modId)
             val busTargetHolder = annotationData.annotationData.getOrDefault("bus", ModAnnotation.EnumHolder(null, "FORGE")) as ModAnnotation.EnumHolder

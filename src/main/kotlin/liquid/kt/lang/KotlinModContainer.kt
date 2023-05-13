@@ -19,7 +19,7 @@ import java.util.function.Supplier
 /**
  * Kotlin mod container
  */
-public class KotlinModContainer(
+class KotlinModContainer(
     info: IModInfo,
     className: String,
     private val scanResults: ModFileScanData,
